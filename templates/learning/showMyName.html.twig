@@ -4,15 +4,20 @@
 
 {% block body %}
     <style>
-        .formName h1 { margin: 1em; max-width: 800px; font: 2rem sans-serif; font-weight: 600; color: #B0413E; alignment: left;  }
+        .formName { margin: 1em auto; display: flex; flex-direction: column; justify-items: center; }
+        h1 { width: 100vw; font: 2rem sans-serif; font-weight: 600; color: #B0413E; display: flex; justify-content: space-around; }
         input { border-radius: 5px; width: 18.5vw; margin-left: 10px; padding: 5px;}
         form { margin: 2em auto; font: 20px sans-serif; padding: 10px; }
-        button {  margin-top: 2em; width: 24vw; border: 2px solid darkblue; border-radius: 5px; cursor: pointer; padding: 10px; background-color: #5eb5e0}
+        button {  margin-top: 2em; width: 24vw; border: 2px solid darkblue; border-radius: 5px; cursor: pointer; font-weight:600; padding: 10px; background-color: #5eb5e0; display: flex; justify-content: center; }
+        a { text-decoration: none; font: 1.5rem sans-serif; color: #5eb5e0; cursor: pointer; display: flex; justify-content: center; }
     </style>
 
     <div class="formName">
 
         <h1>Hello {{ name }}!</h1>
         {{ form(form) }}
+        <a href="{{ path('aboutMe') }}">About me</a>
+
+
     </div>
 {% endblock %}
