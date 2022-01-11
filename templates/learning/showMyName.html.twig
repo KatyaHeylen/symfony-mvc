@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello world!{% endblock %}
+
+{% block body %}
+    <style>
+        .formName h1 { margin: 1em auto; max-width: 800px; width: 50%; font: 40px sans-serif; font-weight: 600; color: #B0413E; alignment: left;  }
+        input { border-radius: 5px; margin-left: 10px;}
+        form { margin: 2em auto; font: 20px sans-serif; padding: 10px; }
+        button {  margin-top: 2em; width: 16%; border: 1px solid darkblue; border-radius: 5px; }
+    </style>
+
+    <div class="formName">
+
+        <h1>Hello {{ name }}!</h1>
+        {{ form(form) }}
+    </div>
+{% endblock %}
