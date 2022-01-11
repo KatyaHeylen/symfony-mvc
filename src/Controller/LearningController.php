@@ -8,9 +8,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+//use App\Entity\Task;
 
 class LearningController extends AbstractController
 {
+    private $requestStack;
+
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack;
+    }
+
+
     #[Route('/about-me', name: 'aboutMe')]
     public function aboutMe(): Response
     {
@@ -36,11 +48,19 @@ class LearningController extends AbstractController
             $session = $this->requestStack->getSession();
             $session->set('name', $name);
 
-            return $this->render('learning/showMyName.html.twig', [
-                'name' => $name,
-                'form' => $form->createView(),]);
+//            return $this->redirectToRoute('showMyName',
+//            ['name' => $name,
+//            'form' => $form->createView(),
+//            ]);
+
+
+          return $this->render('learning/showMyName.html.twig', [
+               'name' => $name,
+               'form' => $form->createView(),]);
         }
-        return $this->render('learning/showMyName.html.twig', ['name' => 'unknown',
+
+        return $this->render('learning/showMyName.html.twig',
+            ['name' => 'unknown',
             'form' => $form->createView(),
         ]);
     }
