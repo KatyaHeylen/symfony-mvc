@@ -23,12 +23,21 @@ class LearningController extends AbstractController
     }
 
 
-    #[Route('/about-me', name: 'aboutMe')]
+    #[Route('/about-becode', name: 'aboutMe')]
+
     public function aboutMe(): Response
     {
+        $session = $this->requestStack->getSession();
+        $name = $session->get('name', '');
+        if(empty($name)) {
+            return $this->forward('App\Controller\LearningController::showMyName');
+        }
+        else{
         return $this->render('learning/aboutMe.html.twig', [
-            'name' => 'LearningController',
+
+            'name' => $name,
         ]);
+        }
 
     }
 
@@ -48,20 +57,16 @@ class LearningController extends AbstractController
             $session = $this->requestStack->getSession();
             $session->set('name', $name);
 
-//            return $this->redirectToRoute('showMyName',
-//            ['name' => $name,
-//            'form' => $form->createView(),
-//            ]);
+            return $this->render('learning/showMyName.html.twig', [
+                'name' => $name,
+                'form' => $form->createView(),
+                ]);
 
-
-          return $this->render('learning/showMyName.html.twig', [
-               'name' => $name,
-               'form' => $form->createView(),]);
         }
 
         return $this->render('learning/showMyName.html.twig',
             ['name' => 'unknown',
-            'form' => $form->createView(),
-        ]);
+                'form' => $form->createView(),
+            ]);
     }
 }
