@@ -13,7 +13,17 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
+    <aside>
+        {% block menu %}
+        <a href="{{ path('showMyName') }}">Homepage</a>
+        <a href="{{ path('aboutMe') }}">About me</a>
+        {% endblock %}
+    </aside>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+        {% endblock %}
     </body>
+    <footer>
+        {% block footer %}© Becode {% endblock %}
+    </footer>
 </html>
